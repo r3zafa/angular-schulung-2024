@@ -1,5 +1,5 @@
-import { CurrencyPipe, NgIf } from '@angular/common';
-import { Component, EventEmitter, input, Output } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 
 import { Book } from '../../shared/book';
 
@@ -8,20 +8,25 @@ import { Book } from '../../shared/book';
   standalone: true,
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
-  imports: [NgIf, CurrencyPipe]
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  imports: [CurrencyPipe]
 })
 export class BookComponent {
 
-  book = input<Book>();
+  // signals
+  book = input.required<Book>();
+  mwst = input(1.19);
+  priceBrutto = computed(() => this.book().price * this.mwst());
 
-  @Output() rateUp = new EventEmitter<Book>();
-  @Output() rateDown = new EventEmitter<Book>();
+  // outputEmiter
+  rateUp = output<Book>();
+  rateDown = output<Book>();
 
   doRateUp() {
-    //this.rateUp.emit(this.book);
+    this.rateUp.emit(this.book());
   }
 
   doRateDown() {
-    //this.rateDown.emit(this.book);
+    this.rateDown.emit(this.book());
   }
 }
