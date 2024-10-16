@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DashboardComponent } from './books/dashboard/dashboard.component';
+import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { RouterOutlet } from '@angular/router';
 import {NavbarComponent} from '../components/navbar/navbar.component';
 

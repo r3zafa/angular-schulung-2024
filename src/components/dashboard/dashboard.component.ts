@@ -2,11 +2,11 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { BookComponent } from '../book/book.component';
-import { Book } from '../shared/book';
-import { BookRatingService } from '../shared/book-rating.service';
+import { Book } from '../../shared/book';
+import { BookRatingService } from '../../shared/book-rating.service';
 
 @Component({
-    selector: 'app-dashboard',
+    selector: 'k-dashboard',
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss',

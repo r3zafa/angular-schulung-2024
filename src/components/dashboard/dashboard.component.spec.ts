@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Book } from '../shared/book';
-import { BookRatingService } from '../shared/book-rating.service';
+import { Book } from '../../shared/book';
+import { BookRatingService } from '../../shared/book-rating.service';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
