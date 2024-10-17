@@ -3,6 +3,7 @@ import { ApplicationConfig, provideExperimentalZonelessChangeDetection  } from '
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 export const appConfig: ApplicationConfig = {
@@ -10,6 +11,6 @@ export const appConfig: ApplicationConfig = {
     //provideZoneChangeDetection({ eventCoalescing: true }),
     provideExperimentalZonelessChangeDetection(),
     provideRouter(routes /*, withDebugTracing()*/),
-    provideHttpClient()
+    provideHttpClient(), provideAnimationsAsync(), provideAnimationsAsync()
   ]
 };
