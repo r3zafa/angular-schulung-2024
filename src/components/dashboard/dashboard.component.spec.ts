@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { BookStoreService } from '../../shared/book-store.service';
 import { RouterTestingHarness } from '@angular/router/testing';
 
-fdescribe('DashboardComponent', () => {
+describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
