@@ -3,40 +3,33 @@ import { ChangeDetectionStrategy, Component, inject, signal, WritableSignal } fr
 import { BookComponent } from '../book/book.component';
 import { Book } from '../../shared/book';
 import { BookRatingService } from '../../shared/book-rating.service';
-
+import { BookStoreService } from '../../shared/book-store.service';
+import {MatButtonModule} from '@angular/material/button'; 
+import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'k-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [BookComponent]
+  imports: [BookComponent, MatButtonModule]
 })
 export class DashboardComponent {
   // injects
   private rs: BookRatingService = inject(BookRatingService);
+  private bs = inject(BookStoreService);
   // signals
   books: WritableSignal<Book[]> = signal<Book[]>([]);
+  // 2. weg (convert to signal) für migration geeignet. am besten nicht verwenden.
+  // books$ = this.bs.getAllBooks();
+  // books = toSignal(this.books$, {initialValue: []})
 
   constructor() {
-    this.books.set([
-      {
-        isbn: '123',
-        title: 'Angular',
-        description: 'Grundlagen und mehr',
-        price: 36.9,
-        rating: 5
-      },
-      {
-        isbn: '456',
-        title: 'Vue.js',
-        description: 'Das grüne Framework',
-        price: 32.9,
-        rating: 3
-      }
-    ]);
+    this.bs.getAllBooks().subscribe(books => this.books.set(books));
+  }
 
-    // setTimeout(() => this.books.set([]), 3000)
+  showFirstBook() {
+    alert(this.books()[0]?.title);
   }
 
   doRateUp(book: Book) {

@@ -1,5 +1,7 @@
 @let bList = books();
 
+<a mat-flat-button color="warn" (click)="showFirstBook()" class="mb-3">show 1. Buch an</a>
+
 @for (book of bList; track book) {
 <app-book (rateUp)="doRateUp($event)" (rateDown)="doRateDown($event)" [book]="book" />
 } @empty {
