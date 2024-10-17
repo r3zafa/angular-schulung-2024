@@ -1,9 +1,11 @@
-@for (book of books; track book) {
+@let bList = books();
+
+@for (book of bList; track book) {
 <app-book (rateUp)="doRateUp($event)" (rateDown)="doRateDown($event)" [book]="book" />
 } @empty {
 <p> Keine Bücher vorhanden</p>
 }
 
 <p>
-  <strong>Anzahl Bücher:</strong> {{ books.length }}
+  <strong>Anzahl Bücher:</strong> {{ bList.length }}
 </p>

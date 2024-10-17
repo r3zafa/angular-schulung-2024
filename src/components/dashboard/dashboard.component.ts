@@ -1,22 +1,25 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, WritableSignal } from '@angular/core';
 
 import { BookComponent } from '../book/book.component';
 import { Book } from '../../shared/book';
 import { BookRatingService } from '../../shared/book-rating.service';
 
 @Component({
-    selector: 'k-dashboard',
-    standalone: true,
-    templateUrl: './dashboard.component.html',
-    styleUrl: './dashboard.component.scss',
-    imports: [NgFor, BookComponent, NgIf]
+  selector: 'k-dashboard',
+  standalone: true,
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [BookComponent]
 })
 export class DashboardComponent {
-  books: Book[] = [];
+  // injects
+  private rs: BookRatingService = inject(BookRatingService);
+  // signals
+  books: WritableSignal<Book[]> = signal<Book[]>([]);
 
-  constructor(private rs: BookRatingService) {
-    this.books = [
+  constructor() {
+    this.books.set([
       {
         isbn: '123',
         title: 'Angular',
@@ -31,7 +34,9 @@ export class DashboardComponent {
         price: 32.9,
         rating: 3
       }
-    ];
+    ]);
+
+    // setTimeout(() => this.books.set([]), 3000)
   }
 
   doRateUp(book: Book) {
@@ -45,8 +50,9 @@ export class DashboardComponent {
   }
 
   updateAndSortList(ratedBook: Book) {
-    this.books = this.books
-      .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
-      .sort((a, b) => b.rating - a.rating);
+    // this.books = this.books
+    //  .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
+    //  .sort((a, b) => b.rating - a.rating);
+    
   }
 }
