@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, computed, input, output } from '@an
 import { Book } from '../../shared/book';
 
 @Component({
-  selector: 'app-book',
+  selector: 'k-book',
   standalone: true,
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',

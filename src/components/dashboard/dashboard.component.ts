@@ -4,7 +4,7 @@ import { BookComponent } from '../book/book.component';
 import { Book } from '../../shared/book';
 import { BookRatingService } from '../../shared/book-rating.service';
 import { BookStoreService } from '../../shared/book-store.service';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'k-dashboard',
@@ -46,6 +46,20 @@ export class DashboardComponent {
     // this.books = this.books
     //  .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
     //  .sort((a, b) => b.rating - a.rating);
+
+    /*const updatedBooks = this.books()
+      .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
+      .sort((a, b) => b.rating - a.rating);
+
+    this.books.set(updatedBooks);
+    */
+    // oder update
+
+    this.books.update(books => books
+      .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
+      .sort((a, b) => b.rating - a.rating));
+
+    // TODO: buch zum serve senden (Hausaufgabe)
 
   }
 }

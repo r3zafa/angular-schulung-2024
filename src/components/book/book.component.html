@@ -4,7 +4,9 @@
   <div class="card-body bg-light">
     <img class="img-thumbnail float-end" src="//api.angular.schule/avatar/{{ b.rating }}">
     <div class="card-title">
-      <h2> {{ b.title }} <span class="badge bg-secondary me-2">{{ b.rating }}</span> </h2>
+      <h2> {{ b.title }}
+        <span class="badge bg-secondary me-2">{{ b.rating }}</span>
+      </h2>
     </div>
     <p>{{ b.description }}</p>
     <p>Preis: {{ priceBrutto() | currency:'EUR' }}</p>
