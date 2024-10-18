@@ -1,9 +1,26 @@
 @let bList = books();
 
-<a mat-flat-button color="warn" (click)="showFirstBook()" class="mb-3">show 1. Buch an</a>
+<a mat-flat-button color="warn" (click)="showFirstBook()" class="mb-3">
+  show First in the chart
+</a>
+
+@if (!toggleForm) {
+<a mat-raised-button color="primary" (click)="toggle()" class="mb-3 ms-2">
+  add new book
+</a>
+} @else {
+<a mat-flat-button color="primary" (click)="toggle()" class="mb-3 ms-2">
+  add new book
+</a>
+}
+
+
+@if (toggleForm) {
+<k-book-form [currentBook]="currentBook()" (create)="addBook($event)" (edit)="changeBook($event)" />
+}
 
 @for (book of bList; track book) {
-<k-book (rateUp)="doRateUp($event)" (rateDown)="doRateDown($event)" [book]="book" />
+<k-book (rateUp)="doRateUp($event)" (rateDown)="doRateDown($event)" (edit)="changeToEditMode($event)" [book]="book" />
 } @empty {
 <p> Keine Bücher vorhanden</p>
 }

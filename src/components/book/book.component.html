@@ -11,6 +11,7 @@
     <p>{{ b.description }}</p>
     <p>Preis: {{ priceBrutto() | currency:'EUR' }}</p>
     <button [disabled]="b.rating <= 1" class="btn btn-primary me-2" (click)="doRateDown()"> -1</button>
-    <button [disabled]="b.rating >= 5" class="btn btn-primary" (click)="doRateUp()">+1</button>
+    <button [disabled]="b.rating >= 5" class="btn btn-primary me-2" (click)="doRateUp()">+1</button>
+    <button class="btn btn-secondary" (click)="doEdit()">EDIT</button>
   </div>
 </div>

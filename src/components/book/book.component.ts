@@ -21,6 +21,7 @@ export class BookComponent {
   // outputEmiter
   rateUp = output<Book>();
   rateDown = output<Book>();
+  edit = output<Book>();
 
   doRateUp() {
     this.rateUp.emit(this.book());
@@ -28,5 +29,10 @@ export class BookComponent {
 
   doRateDown() {
     this.rateDown.emit(this.book());
+  }
+
+
+  doEdit() {
+    this.edit.emit(this.book());
   }
 }
