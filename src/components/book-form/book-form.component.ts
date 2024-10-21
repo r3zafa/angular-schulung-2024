@@ -14,7 +14,7 @@ export class BookFormComponent {
   // output eventEmitter
   create = output<Book>();
   edit = output<Book>();
-  // input sinals
+  // input signals
   currentBook = input<Book | undefined>();
 
   updateForm = effect(()=>{

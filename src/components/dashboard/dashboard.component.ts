@@ -7,6 +7,7 @@ import { BookStoreService } from '../../shared/book-store.service';
 import { MatButtonModule } from '@angular/material/button';
 import { BookFormComponent } from "../book-form/book-form.component";
 import { B } from '@angular/cdk/keycodes';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'k-dashboard',
@@ -68,7 +69,6 @@ export class DashboardComponent {
       .sort((a, b) => b.rating - a.rating));
 
     // TODO: buch zum serve senden (Hausaufgabe)
-
   }
 
   toggle() {
@@ -86,7 +86,11 @@ export class DashboardComponent {
   }
 
   changeBook(cBook: Book) {
-    this.updateAndSortList(cBook);
+    // this.updateAndSortList(cBook);
     this.currentBook.set(undefined);
+
+    this.bs.updateBook(cBook)
+    .pipe(switchMap(_ => this.bs.getAllBooks()))
+    .subscribe(books => this.books.set(books));
   }
 }

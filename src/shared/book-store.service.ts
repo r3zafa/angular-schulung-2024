@@ -9,7 +9,6 @@ import { Book } from './book';
   providedIn: 'root'
 })
 export class BookStoreService {
-
   http = inject(HttpClient);
 
   getAllBooks(): Observable<Book[]> {
@@ -21,4 +20,9 @@ export class BookStoreService {
   getSingleBook(isbn: string): Observable<Book> {
     return this.http.get<Book>('https://api.angular.schule/books/' + isbn /* + '/slow' */);
   }
+
+  updateBook(book: Book) {
+    return this.http.put<Book>('https://api.angular.schule/books/' + book.isbn, book);
+  }
+
 }

@@ -19,7 +19,7 @@
 <k-book-form [currentBook]="currentBook()" (create)="addBook($event)" (edit)="changeBook($event)" />
 }
 
-@for (book of bList; track book) {
+@for (book of bList; track book.isbn) {
 <k-book (rateUp)="doRateUp($event)" (rateDown)="doRateDown($event)" (edit)="changeToEditMode($event)" [book]="book" />
 } @empty {
 <p> Keine Bücher vorhanden</p>
