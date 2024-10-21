@@ -2,13 +2,11 @@ import { ChangeDetectionStrategy, Component, inject, signal, WritableSignal } fr
 
 import { BookComponent } from '../book/book.component';
 import { Book } from '../../shared/book';
-import { BookRatingService } from '../../shared/book-rating.service';
-import { BookStoreService } from '../../shared/book-store.service';
 import { MatButtonModule } from '@angular/material/button';
 import { BookFormComponent } from "../book-form/book-form.component";
-import { switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectBooks, selectBooksLoading } from '../../store/book/book.selectors';
+import { BookActions } from '../../store/book/book.actions';
 
 @Component({
   selector: 'k-dashboard',
@@ -38,35 +36,15 @@ export class DashboardComponent {
   }
 
   doRateUp(book: Book) {
-    //const ratedBook = this.rs.rateUp(book);
-    //this.updateAndSortList(ratedBook);
+    this.store.dispatch(BookActions.rateUpService({ book }));
   }
 
   doRateDown(book: Book) {
-    //const ratedBook = this.rs.rateDown(book);
-    //this.updateAndSortList(ratedBook);
+    this.store.dispatch(BookActions.rateDownService({ book }));
   }
 
   updateAndSortList(ratedBook: Book) {
-    /*this.books = this.books
-      .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
-      .sort((a, b) => b.rating - a.rating);
-    */
 
-    /*const updatedBooks = this.books()
-      .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
-      .sort((a, b) => b.rating - a.rating);
-
-    this.books.set(updatedBooks);
-    */
-
-    // oder update
-
-    //this.books.update(books => books
-      //.map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
-      //.sort((a, b) => b.rating - a.rating));
-
-    // TODO: buch zum serve senden (Hausaufgabe)
   }
 
   toggle() {
@@ -75,20 +53,14 @@ export class DashboardComponent {
 
 
   addBook(book: Book) {
-    //this.books.update(books => [...books,book])
+
   }
 
   changeToEditMode(book: Book) {
-    //this.currentBook.set(book);
-   // this.toggleForm = true;
+
   }
 
   changeBook(cBook: Book) {
-    // this.updateAndSortList(cBook);
-    //this.currentBook.set(undefined);
 
-    //this.bs.updateBook(cBook)
-    //.pipe(switchMap(_ => this.bs.getAllBooks()))
-    //.subscribe(books => this.books.set(books));
   }
 }
