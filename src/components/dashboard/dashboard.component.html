@@ -25,6 +25,10 @@
 <p> Keine Bücher vorhanden</p>
 }
 
+@if (loading()) {
+  <h3>Lade Bücher</h3>
+}
+
 <p>
   <strong>Anzahl Bücher:</strong> {{ bList.length }}
 </p>
