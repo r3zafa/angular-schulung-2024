@@ -2,11 +2,11 @@ import { Book } from './book';
 import { BookRatingService } from './book-rating.service';
 
 describe('BookRatingService', () => {
-  let service: BookRatingService;
+  //let service: BookRatingService;
   let book: Book;
 
   beforeEach(() => {
-    service = service = new BookRatingService();
+    //service = service = new BookRatingService();
     book = {
       isbn: '000',
       title: 'test',
@@ -40,7 +40,7 @@ describe('BookRatingService', () => {
   it('should not be allowed to have a rating smaller than 1', () => {
     book.rating = 1
     const ratedBook = BookRatingService.rateDown(book);
-    expect(ratedBook.rating).toBe(5);
+    expect(ratedBook.rating).toBe(1);
   });
 
 
