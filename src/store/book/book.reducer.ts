@@ -38,31 +38,36 @@ export const reducer = createReducer(
 
   on(BookActions.rateUp, (state, { book }) => ({
     ...state,
-    books: state.books.map(b =>
-      b === book ? { ...b, rating: b.rating + 1 } : b
-    )
+    books: state.books
+    .map(b =>b === book ? { ...b, rating: b.rating + 1 } : b)
+    .sort((a,b) => b.rating - a.rating)
   })),
 
   on(BookActions.rateDown, (state, { book }) => ({
     ...state,
-    books: state.books.map(b =>
-      b === book ? { ...b, rating: b.rating - 1 } : b
-    )
+    books: state.books
+    .map(b => b === book ? { ...b, rating: b.rating - 1 } : b)
+    .sort((a,b) => b.rating - a.rating)
   })),
 
 
   on(BookActions.rateUpService, (state, { book }) => ({
     ...state,
-    books: state.books.map(b =>
-      b === book ? BookRatingService.rateUp(b) : b
-    )
+    books: state.books
+    .map(b => b === book ? BookRatingService.rateUp(book) : b)
+    .sort((a,b) => b.rating - a.rating)
   })),
 
   on(BookActions.rateDownService, (state, { book }) => ({
     ...state,
-    books: state.books.map(b =>
-      b === book ? BookRatingService.rateDown(b) : b
-    )
+    books: state.books
+    .map(b => b === book ? BookRatingService.rateDown(book) : b)
+    .sort((a,b) => b.rating - a.rating)
+  })),
+
+  on(BookActions.create, (state, { book }) => ({
+    ...state,
+    books: [...state.books, book]
   }))
 );
 

@@ -14,5 +14,7 @@ export const BookActions = createActionGroup({
 
     'Rate Up Service': props<{ book: Book }>(),  // Success action for rateUp
     'Rate Down Service': props<{ book: Book }>(),  // Success action for rateDown
+
+    'Create': props<{ book: Book }>(),
   }
 });

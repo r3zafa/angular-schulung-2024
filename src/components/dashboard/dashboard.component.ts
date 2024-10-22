@@ -38,7 +38,16 @@ export class DashboardComponent {
   }
 
   showFirstBook() {
+    alert(this.books()[0]?.title + ' | #1 in the list')
+  }
 
+  toggle() {
+    this.toggleForm = !this.toggleForm;
+  }
+
+  changeToEditMode(book: Book) {
+    this.currentBook.set(book);
+    this.toggleForm = true;
   }
 
   doRateUp(book: Book) {
@@ -49,23 +58,12 @@ export class DashboardComponent {
     this.store.dispatch(BookActions.rateDownService({ book }));
   }
 
+  addBook(book: Book) {
+    this.store.dispatch(BookActions.create({ book }));
+  }
+
   updateAndSortList(ratedBook: Book) {
 
-  }
-
-  toggle() {
-    this.toggleForm = !this.toggleForm;
-  }
-
-
-  addBook(book: Book) {
-
-  }
-
-  changeToEditMode(book: Book) {
-    console.log(book);
-    this.currentBook.set(book);
-    this.toggleForm = true;
   }
 
   changeBook(cBook: Book) {
