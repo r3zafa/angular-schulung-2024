@@ -16,11 +16,26 @@
 
 
 @if (toggleForm) {
-<k-book-form [currentBook]="currentBook()" (create)="addBook($event)" (edit)="changeBook($event)" />
+  <div class="k-pop-up-form">
+    <header class="k-pop-up-form-header">
+          <button mat-mini-fab (click)="toggle()">
+      <mat-icon>close</mat-icon>
+    </button>
+    </header>
+    <k-book-form [currentBook]="currentBook()"
+             (create)="addBook($event)"
+             (edit)="changeBook($event)" />
+
+  </div>
 }
 
 @for (book of bList; track book.isbn) {
-<k-book (rateUp)="doRateUp($event)" (rateDown)="doRateDown($event)" (edit)="changeToEditMode($event)" [book]="book" />
+
+<k-book (rateUp)="doRateUp($event)"
+        (rateDown)="doRateDown($event)"
+        (edit)="changeToEditMode($event)"
+        [book]="book" />
+
 } @empty {
 <p> Keine Bücher vorhanden</p>
 }

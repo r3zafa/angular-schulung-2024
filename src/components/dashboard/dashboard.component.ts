@@ -7,6 +7,7 @@ import { BookFormComponent } from "../book-form/book-form.component";
 import { Store } from '@ngrx/store';
 import { selectBooks, selectBooksLoading } from '../../store/book/book.selectors';
 import { BookActions } from '../../store/book/book.actions';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'k-dashboard',
@@ -14,7 +15,12 @@ import { BookActions } from '../../store/book/book.actions';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [BookComponent, MatButtonModule, BookFormComponent]
+  imports: [
+    BookComponent,
+    MatButtonModule,
+    BookFormComponent,
+    MatIcon
+  ]
 })
 export class DashboardComponent {
   // injects
@@ -57,7 +63,9 @@ export class DashboardComponent {
   }
 
   changeToEditMode(book: Book) {
-
+    console.log(book);
+    this.currentBook.set(book);
+    this.toggleForm = true;
   }
 
   changeBook(cBook: Book) {
